@@ -12,6 +12,25 @@ oc new-project ${TARGET_NAMESPACE}
 oc adm policy add-scc-to-user anyuid -z openshiftartifactoryha-artifactory-ha
 ```
 
+## Create dummy service to get an internal certificate¶
+```
+oc apply -f - <<EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: jfrog
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: jfrog-cert
+spec:
+  ports:
+  - name: service-serving-cert
+    port: 443
+    targetPort: 8443
+  selector:
+    app: service-serving-cert
+EOF
+```
+
 ```
 KEY=$(openssl rand -hex 32)
 
