@@ -1,6 +1,6 @@
 ## Jfrog-Artifactory Operator CR installation 
 
-## Make sure you have Postgresql ready
+ Make sure you have Postgresql ready
 
 ```
 TARGET_NAMESPACE=jfrog-artifactory
